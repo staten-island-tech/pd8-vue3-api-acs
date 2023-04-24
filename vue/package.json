@@ -10,6 +10,10 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "pinia": "^2.0.32",
+>>>>>>> 215ffaa0dde0cf6bb7843cbb3a46165f1c4f1d0b
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },
