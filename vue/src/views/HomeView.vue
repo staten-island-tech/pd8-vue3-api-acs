@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <h1>test</h1>
 </template>
 
 <script setup>
@@ -16,6 +16,17 @@ onMounted(() => {
   getPokemon()
 })
 //mounted is a stage of the vue component's life cycle
+//runs getPokemon function when mounted 
 </script>
 
-<style scoped></style>
+<style scoped>
+.container {
+  width: 80vw;
+  margin: 30px auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+</style>
