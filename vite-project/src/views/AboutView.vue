@@ -29,32 +29,32 @@ export default {
 
   async mounted() {
     try {
-      const response = await fetch('https://data.cityofnewyork.us/resource/rsgh-akpg.json')
-      const dogs = await response.json()
-      const filtered = dogs.filter((x) => {
-        return x.breed !== undefined
+      const response = await fetch('https://data.cityofnewyork.us/resource/xxjs-y9yk.json')
+      const kids = await response.json()
+      const filtered = kids.filter((x) => {
+        return x.borough !== undefined
       })
-      const pitbull = filtered.filter((e) => {
-        return e.breed.includes('Pit Bull')
+      const manhatten = filtered.filter((e) => {
+        return e.borough.includes('MANHATTAN')
       })
-      const unknown = filtered.filter((e) => {
-        return e.breed.includes('UNKNOWN')
+      const bronx = filtered.filter((e) => {
+        return e.borough.includes('BRONX')
       })
-      const shihtzu = filtered.filter((e) => {
-        return e.breed.includes('Shih Tzu')
+      const statenis = filtered.filter((e) => {
+        return e.borough.includes('STATEN IS')
       })
-      const chihuahua = filtered.filter((e) => {
-        return e.breed.includes('Chihuahua')
+      const brookyln = filtered.filter((e) => {
+        return e.borough.includes('BROOKLYN ')
       })
-      const german = filtered.filter((e) => {
-        return e.breed.includes('German Shepherd')
+      const queens = filtered.filter((e) => {
+        return e.borough.includes('QUEENS')
       })
       this.chartData = {
-        labels: ['Pit Bull', 'Unknown', 'German Shepherd', 'Shih Tzu', 'Chihuahua'],
+        labels: ['MANHATTEN', 'BRONX', 'STATEN IS', 'BROOKLYN', 'QUEENS'],
         datasets: [
           {
             backgroundColor: ['#41B883', '#E46651', '#fff533', '#00D8FF', '#a35cff'],
-            data: [pitbull.length, unknown.length, german.length, shihtzu.length, chihuahua.length]
+            data: [manhatten.length, queens.length, bronx.length, statenis.length, brookyln.length]
           }
         ]
       }
