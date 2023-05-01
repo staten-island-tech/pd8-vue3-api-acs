@@ -1,15 +1,15 @@
 <script setup></script>
 
 <template>
-  <router-link to="/">Pitbulls</router-link>
+  <router-link to="/">Hey</router-link>
   <router-link to="/about">About</router-link>
   <router-view></router-view>
 </template>
 
 <style scoped>
 .logo {
-  height: 6em;
-  padding: 1.5em;
+  height: 20em;
+  padding: 20em;
   will-change: filter;
   transition: filter 300ms;
 }

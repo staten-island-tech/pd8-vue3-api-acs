@@ -2,7 +2,7 @@
 
 <template>
   <div class="about">
-    <h1>About</h1>
+    <h1>Child Abuse Liaisons</h1>
   </div>
   <Doughnut v-if="load" id="my-chart-id" :options="chartOptions" :data="chartData" />
 </template>
@@ -53,7 +53,7 @@ export default {
         labels: ['MANHATTEN', 'BRONX', 'STATEN IS', 'BROOKLYN', 'QUEENS'],
         datasets: [
           {
-            backgroundColor: ['#41B883', '#E46651', '#fff533', '#00D8FF', '#a35cff'],
+            backgroundColor: ['#66a898', '#492398', '#fa51b4', '#c3dddc', '#efcc34'],
             data: [manhatten.length, queens.length, bronx.length, statenis.length, brookyln.length]
           }
         ]
