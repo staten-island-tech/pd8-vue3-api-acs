@@ -1,22 +1,26 @@
 <script setup></script>
 
+
 <template>
-  <router-link to="/">Hey</router-link>
-  <router-link to="/about">About</router-link>
+  <router-link to="/" class= “link”>Child Welfare System</router-link>
+  <router-link to="/about" class= “link”>Abuse Liaisons</router-link>
   <router-view></router-view>
 </template>
 
+
 <style scoped>
-.logo {
-  height: 20em;
-  padding: 20em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.link {
+  font-size: 54px;
+  color: #333;
+  margin-right: 40px;
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 </style>

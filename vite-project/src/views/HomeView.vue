@@ -1,24 +1,30 @@
-<script setup></script>
-
 <template>
-  <div class="Home">
-    <h1>
-      Report to City Council on Demographics of Children and Parents at Steps in the Child Welfare
-      System
+  <div class="bar-graph-container">
+    <h1 class="report-title">
+      Report to City Council on Demographics of Children and Parents at Steps in the Child Welfare System
     </h1>
+    <div class="chart">
+      <Bar v-if="load" id="my-chart-id" :options="chartOptions" :data="chartData" />
+    </div>
   </div>
-  <Doughnut v-if="load" id="my-chart-id" :options="chartOptions" :data="chartData" />
 </template>
+
+
 <script>
-import { Doughnut } from 'vue-chartjs'
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
-import { ref, reactive } from 'vue'
-
-ChartJS.register(ArcElement, Tooltip, Legend)
-
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale
+} from 'chart.js'
+import { Bar } from 'vue-chartjs'
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 export default {
-  name: 'BarChart', // renaming it crashes the page lol
-  components: { Doughnut },
+  name: 'BarGRapgh',
+  components: { Bar },
   props: {},
   data() {
     return {
@@ -29,55 +35,33 @@ export default {
       }
     }
   },
-
   async mounted() {
     try {
       const response = await fetch('https://data.cityofnewyork.us/resource/uhvm-6sct.json')
-      const ethnicity = await response.json()
-      const filtered = ethnicity.filter((x) => {
-        return x.sub_category !== undefined
+      const kids = await response.json()
+      const filtered = kids.filter((x) => {
+        return x.child_parent !== undefined
       })
-      const hispanic = filtered.filter((e) => {
-        return e.sub_category.includes('Hispanic/Latinx')
+      const side1 = filtered.filter((e) => {
+        return e.child_parent.includes('Parents')
       })
-      const white = filtered.filter((e) => {
-        return e.sub_category.includes('White non-Hispanic')
+      const side2 = filtered.filter((e) => {
+        return e.child_parent.includes('Children')
       })
-      const asian = filtered.filter((e) => {
-        return e.sub_category.includes('Asian/ Pacific Islander non-Hispanic')
-      })
-      const other = filtered.filter((e) => {
-        return e.sub_category.includes('Other/Unknown')
-      })
-      const black = filtered.filter((e) => {
-        return e.sub_category.includes('African American/  Black non-Hispanic')
-      })
-      const multi = filtered.filter((e) => {
-        return e.sub_category.includes('Multiple Race non-Hispanic')
-      })
+
+
       this.chartData = {
-        labels: [
-          'Hispanic/Latinx',
-          'White non-Hispanic',
-          'Asian/ Pacific Islander non-Hispanic',
-          'Other/Unknown',
-          'African American/  Black non-Hispanic',
-          'Multiple Race non-Hispanic'
-        ],
+        labels: ['parents', 'children '],
         datasets: [
           {
-            backgroundColor: ['#f2f0e1', '#0d2649', '#74251b', '#f7940d', '#d8516f', '#66a898'],
-            data: [
-              hispanic.length,
-              white.length,
-              asian.length,
-              other.length,
-              black.length,
-              multi.length
-            ]
+            label: 'Reports Of acs coming from people',
+            backgroundColor: ['#E46651'],
+            data: [side1.length, side2.length]
           }
         ]
       }
+
+
       this.load = true
       console.log(this.load)
     } catch (e) {
@@ -87,4 +71,26 @@ export default {
 }
 </script>
 
-<style scoped></style>
+
+<style scoped>
+.bar-graph-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.chart {
+  width: 80%;
+  max-width: 800px; /* limit the chart's maximum width */
+  margin: 20px auto; /* center the chart horizontally */
+}
+
+
+.report-title {
+  text-align: center;
+  margin-top: 0;
+}
+</style>
+
+
