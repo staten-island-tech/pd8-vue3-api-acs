@@ -1,15 +1,14 @@
 <template>
-  <div class="about">
-    <h1>
-      Report to City Council on Demographics of Children and Parents at Steps in the Child Welfare
-      System
+  <div class="bar-graph-container">
+    <h1 class="report-title">
+      Report to City Council on Demographics of Children and Parents at Steps in the Child Welfare System
     </h1>
-  </div>
-
-  <div class="chart">
-    <Bar v-if="load" id="my-chart-id" :options="chartOptions" :data="chartData" />
+    <div class="chart">
+      <Bar v-if="load" id="my-chart-id" :options="chartOptions" :data="chartData" />
+    </div>
   </div>
 </template>
+
 
 <script>
 import {
@@ -50,6 +49,7 @@ export default {
         return e.child_parent.includes('Children')
       })
 
+
       this.chartData = {
         labels: ['parents', 'children '],
         datasets: [
@@ -61,6 +61,7 @@ export default {
         ]
       }
 
+
       this.load = true
       console.log(this.load)
     } catch (e) {
@@ -69,3 +70,27 @@ export default {
   }
 }
 </script>
+
+
+<style scoped>
+.bar-graph-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.chart {
+  width: 80%;
+  max-width: 800px; /* limit the chart's maximum width */
+  margin: 20px auto; /* center the chart horizontally */
+}
+
+
+.report-title {
+  text-align: center;
+  margin-top: 0;
+}
+</style>
+
+

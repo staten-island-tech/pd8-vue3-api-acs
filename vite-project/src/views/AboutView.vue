@@ -1,20 +1,27 @@
 <script setup></script>
 
+
 <template>
-  <div class="about">
-    <h1>Child Abuse Liaisons</h1>
+  <div class="container">
+    <h1 class="title">Child Abuse Liaisons</h1>
+    <div class="chart-container">
+      <Doughnut v-if="load" id="my-chart-id" :options="chartOptions" :data="chartData" />
+    </div>
   </div>
-  <Doughnut v-if="load" id="my-chart-id" :options="chartOptions" :data="chartData" />
 </template>
+
+
 <script>
 import { Doughnut } from 'vue-chartjs'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { ref, reactive } from 'vue'
 
+
 ChartJS.register(ArcElement, Tooltip, Legend)
 
+
 export default {
-  name: 'BarChart', // renaming it crashes the page lol
+  name: 'BarChart',
   components: { Doughnut },
   props: {},
   data() {
@@ -26,6 +33,7 @@ export default {
       }
     }
   },
+
 
   async mounted() {
     try {
@@ -67,4 +75,25 @@ export default {
 }
 </script>
 
-<style scoped></style>
+
+<style scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+
+.chart-container {
+  width: 80%;
+  margin: 0 auto;
+}
+</style>
